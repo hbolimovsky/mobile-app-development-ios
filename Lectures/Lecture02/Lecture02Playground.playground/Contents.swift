@@ -17,7 +17,7 @@ var aThirdInt = aSecondInt // makes a COPY (type inferred), NOT a reference to t
 aSecondInt = 1             // 125 replaced with 1
 print(aThirdInt)           // retained original value
 var aFourthInt = 123
-aFourthInt = 12.34         // Error: Swift is strongly typed; can't assign a floating
+//aFourthInt = 12.34         // Error: Swift is strongly typed; can't assign a floating
                            //     point value to an integer variable
 
 var aFifthInt: Int = 789   // type and value may both be explicitly declared
@@ -39,12 +39,13 @@ let anotherConstantInt: Int  // you can declare a constant without assigning it
 anotherConstantInt = 456     // and later give it a value that cannot change
 //anotherConstantInt = 567   // Error: constants can be assigned only once
 
+
 //
 // initializers
 //
-let initDefault = Int()        // default initializer; 0
-let initString = Int("999")    // init with string
-let initWithFloat = Int(45.67) // init with float; floor
+let initIntDefault = Int()        // default initializer; 0
+let initIntString = Int("999")    // init with string
+let initIntFloat = Int(45.67)     // init with float; floor
 
 //
 // Booleans
