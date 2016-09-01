@@ -118,11 +118,32 @@ aFourthSet.insert(123)                    // element not added
 
 
 //
-// dictionaries
+// if-else
 //
-let aFirstDict: Dictionary<Int,String>            // a dictionary of Int keys and String values
-let aSecondDict: [Int:String]                     // shorthand
-aSecondDict = [1: "one", 2: "two", 3: "three"]    // literal assignment
+
+var aCondition = true
+var bCondition = false
+var cCondition = true;
+
+var dCondition = aCondition || bCondition && !cCondition // boolean operators as you'd expect
+
+if aCondition {        // if-else
+    var doSomething = "do something"
+}
+else {
+    var doNothing = "don't do anything"
+}
+
+if( !aCondition ) {  // optional parentheses
+    
+}
+else if bCondition { // else if
+    
+}
+else {
+    var theElse = "both are false"
+}
+
 
 
 //
@@ -137,3 +158,130 @@ var anOptionalFloat: Float?                // an optional float; may or may not 
 anOptionalFloat = 7
 var total = anOptionalFloat! + 5           // this works but is potentially unsafe (see above)
 
+if let tmp = anOptionalFloat {             // use if/let to safely unwrap optionals
+    total = tmp + 5
+}
+else {
+    let whoops = "looks like the optional was nil!"  // code is not executed unless anOptionalFloat
+                                                     //    is nil
+}
+
+var optionalTom: Float?
+var optionalLarry: Float?
+if let tom = optionalTom,         // here is an if/let example with more than one optional
+    larry = optionalLarry {       //    separated by commas
+    total = tom + larry
+}
+else {
+    let willSeeThis = "both are nil, so the else is executed"
+}
+
+//
+// dictionaries
+//
+let aFirstDict: Dictionary<Int,String>            // a dictionary of Int keys and String values
+let aSecondDict: [Int:String]                     // shorthand
+aSecondDict = [1: "one", 2: "two", 3: "three"]    // literal assignment
+
+let one: String? = aSecondDict[1]                 // dictionaries may return nil
+let four: String? = aSecondDict[4]                // like this; optionals are needed
+
+if let two = aSecondDict[2] {
+    var result = "this works because two is in the dictionary"
+}
+
+if let five = aSecondDict[5] {
+    var nope = "not there"
+}
+else {
+    var missing = "5 isn't in the dictionary"
+}
+
+//
+// various for loops (one of which is actually useful)
+//
+
+let arrayForLoops = [9,8,7,6,5,4,3,2,1,0]
+
+//for var i = 0; i<arrayForLoops.count; i++ {  // this "C-style" statement is deprecated
+//}                                            //    and a warning is issued
+
+let range = 0..<arrayForLoops.count  // this for-in is a lot more like Python's
+for i in range {
+  let anInt = arrayForLoops[i]
+}
+
+for anInt in arrayForLoops {  // this for-in is similar to a Java-style for-each
+  let aString = String(anInt)
+}
+
+for (i, aString) in arrayForLoops.enumerate() { // this for-in uses enumerate, which returns a 
+                                                //    series of tuples.  Not used in iOS
+    var interpolated = "index: \(i), value: \(aString)"
+}
+
+
+//
+// enumerations
+//
+
+enum Dogs {                 // an enum works like an enum in Java
+    case Lightning
+    case Thunder
+    case Buttercup
+}
+
+let puppy: Dogs        // enums can be used like other types
+puppy = Dogs.Buttercup // use dot-notation to reference one value
+
+
+enum Cats: String {           // enums can also use types; e.g. String
+    case Slater = "slater"    // each case can be associated with an instance of the type
+    case Cutie = "Cutie"
+    case MrJ = "Mr. J"
+    case Harley = "Harley"
+}
+
+let kitty: String
+kitty = Cats.Slater.rawValue // the value of the type can be retrieved using .rawValue
+
+
+//
+// switch
+//
+
+let dog: String
+switch puppy {            // switch used with an enum
+case .Buttercup:
+    dog = "Buttercup"     // notice no need for breaks (no falling through by default)
+case .Thunder:
+    dog = "Thunder"
+case .Lightning:
+    dog = "Lightning"     // the cases must all appear or an error will occur
+}
+
+let oldFart = Dogs.Thunder
+
+var otherDog: String
+switch oldFart {
+case .Thunder:
+    otherDog = "Thunder"
+    fallthrough
+case .Buttercup:
+    otherDog = "Buttercup"   // the fallthrough keyword is used to force a fall through
+case .Lightning:
+    otherDog = "Lightning"
+}
+
+let myAge = 41
+
+switch myAge {
+case 41:                                // switches can use ints...
+    print("Meh")
+case 31...40:                           // and ranges (neat)
+    print("Not so bad.")
+case 0...30:
+    print("Still young!")
+default:                                // and specify defaults as you'd expect
+    print("That is not an age...")
+}
