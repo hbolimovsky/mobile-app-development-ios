@@ -3,7 +3,8 @@
 import UIKit
 
 var str = "Hello, playground"
-str = "Hello, CSC 214!"
+
+print("Hello, CSC 214!")
 
 //
 // integers
