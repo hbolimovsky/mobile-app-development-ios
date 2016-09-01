@@ -15,9 +15,9 @@ var aSecondInt = 123       // type is inferred from literal value
 var aThirdInt = aSecondInt // makes a COPY (type inferred), NOT a reference to the same
                            //     integer.  changes to one won't affect the other
 aSecondInt = 1             // 125 replaced with 1
-aThirdInt = aThirdInt + 4  // retained original value
+print(aThirdInt)           // retained original value
 var aFourthInt = 123
-//aFourthInt = 12.34       // Error: Swift is strongly typed; can't assign a floating
+aFourthInt = 12.34         // Error: Swift is strongly typed; can't assign a floating
                            //     point value to an integer variable
 
 var aFifthInt: Int = 789   // type and value may both be explicitly declared
