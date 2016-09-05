@@ -81,15 +81,27 @@ let initFloatDef = Float()          // default; 0
 let initFloatStr = Float("12.56")   // init with string
 let initFloatInt = Float(12345)     // init with int
 
-
+//
 // strings
+//
 let aFirstString = "abc"    // type inferred
 let aSecondString: String   // type explicit, no value
+
+//isEmpty
 aSecondString = "def"       // assigns a value to previously declared variable
 aSecondString.isEmpty       // not empty
 let aThirdString = ""       // the empty string
 aThirdString.isEmpty        // is empty
+let aBlankString = "   "    // white space
+aBlankString.isEmpty        // is not empty
 
+// mutation
+var mutableString = "abc"
+mutableString.appendContentsOf("def")  // in place mutation of the string
+print(mutableString)
+
+let immutableString = "123"
+//immutableString.appendContentsOf("456")  // Error: can't change a constant string; immutable
 
 //
 // arrays
