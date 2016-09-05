@@ -56,20 +56,26 @@ aFirstBool = false         // assign the literal "false"
 var aSecondBool = true     // type is inferred from literal value
 //aSecondBool = 23         // Error: Swift is still strongly typed.
 
-let initBoolDef = Bool()   // default initializer; false
-let initBoolOne = Bool(1)  // init with Int (1); true
-let initBoolZer = Bool(0)  // init with Int (0); false
-let initBoolNeg = Bool(-1) // init with Int (-1); true
+let initBoolDef = Bool()            // default initializer; false
+let initBoolBoo = Bool(aSecondBool) // init with another bool
+let initBoolOne = Bool(1)           // init with Int (1); true
+let initBoolZer = Bool(0)           // init with Int (0); false
+let initBoolNeg = Bool(-1)          // init with Int (-1); true
+
 
 
 //
 // floating point numbers
 //
+let mFloatLiteral = 12.34  // this is a Double by default
+let aCopy: Float
+//aCopy = mFloatLiteral    // so this causes an error (can't assign Double to Float)
+
 let aFloat: Float = 12.34           // 32-bit
 let aDouble: Double = 1234567.89567 // 64-bit
 let aFloat80: Float80 = 12345678901234567890.12345678901234567890 // 80-bit
-let anotherFloat = 2                // assigning an integer literal to a float is fine
-let yetAnotherFloat = aSecondInt    // assigning an integer variable to a float is also fine
+let anotherFloat: Float = 2                // assigning an integer literal to a float is fine
+// let yetAnotherFloat: Float = aSecondInt    // Error: can't assign int var to float
 
 let initFloatDef = Float()          // default; 0
 let initFloatStr = Float("12.56")   // init with string
