@@ -103,6 +103,12 @@ print(mutableString)
 let immutableString = "123"
 //immutableString.appendContentsOf("456")  // Error: can't change a constant string; immutable
 
+
+let initStringDef = String()
+let initStringStr = String("abc")
+let initStringInt = String(1234)
+let initStringFlo = String(45.67)
+
 //
 // arrays
 //
@@ -122,13 +128,27 @@ aSecondArray.count               // the number of elements in the array
 //aSecondArray.append(6)         // Error: cannot append to a constant array
 //var bad = aSecondArray[2]      // Error: there are only 2 elements in the array; can't
                                  //   get the third.
+//aSecondArray.removeAtIndex(2)  // error: cannot remove elements from a constant array
+//aSecondArray.insert(8, 1)      // error: cannot insert into a constant array
 
 let initArrayDef = Array<String>()               // empty array
 let initArrayArr = Array<String>(["abc", "def"]) // init with literal
 
 let anArrayOfArrays: Array<Array<Int>>      // an array of arrays of ints
+let arrayOfArrays: [[Int]]
 anArrayOfArrays = [[1],[4,5,6],[7,8]]       // assign a literal value; ragged arrays OK
 let anotherElement = anArrayOfArrays[1][2]  // index of 3rd element in 2nd array
+
+var aSourceArray = [10, 20, 30]
+let aCopyArray = aSourceArray
+
+aSourceArray.append(42)
+aSourceArray.removeAtIndex(1)
+
+print(aSourceArray)
+print(aCopyArray)
+
+
 
 
 //
@@ -140,11 +160,26 @@ let aSecondSet = Set([123, 456, 789])     // initialize with array; order is los
 aSecondSet.count                          // number of elements in the set; 3
 aSecondSet.contains(123)                  // contains 123? true
 //aSecondSet.insert(321)                  // Error: cannot insert into constant set
-let aThirdSet = Set([123, 123, 456, 123]) // duplicate elements removed
+var aThirdSet = Set([123, 123, 456, 123]) // duplicate elements removed
+aThirdSet.insert(123)                     // duplicate elements not inserted
+aThirdSet.insert(789)                     // new elements are inserted
+aThirdSet.popFirst()                      // removes and returns the first element
+aThirdSet.remove(123)                     // removes and returns the specified element
+aThirdSet.remove(555)                     // return nil as the element isn't in the set
+print(aThirdSet)
+
+
 var aFourthSet = Set<Int>()               // empty set
 aFourthSet.insert(123)                    // insert 123
 aFourthSet.insert(789)                    // insert 789
 aFourthSet.insert(123)                    // element not added
+aFourthSet.remove(123)                    // remove element
+
+
+aFourthSet.count
+aFourthSet.contains(123)
+aFourthSet.contains(999)
+aFourthSet.popFirst()
 
 
 //
@@ -153,7 +188,7 @@ aFourthSet.insert(123)                    // element not added
 
 var aCondition = true
 var bCondition = false
-var cCondition = true;
+var cCondition = true
 
 var dCondition = aCondition || bCondition && !cCondition // boolean operators as you'd expect
 
@@ -174,6 +209,13 @@ else {
     var theElse = "both are false"
 }
 
+if aCondition && bCondition { // and
+    
+}
+else if aCondition || bCondition { // or
+    
+}
+
 
 
 //
@@ -182,9 +224,15 @@ else {
 let anUnassignedInt: Int
 //let aBadAssignment = anUnassignedInt     // Error: can't use a variable before it is assigned
 var anOptionalFloat: Float?                // an optional float; may or may not be nil
+var anotherOptionalFloat = anOptionalFloat
 //var total = anOptionalFloat + 5          // Error: need to unwrap the optional
 //var total = anOptionalFloat! + 5         // Error: can force the unwrap with !, but causes a trap
                                            //   if the optional is nil
+let anOptionalConstant: String?
+//let anotherOptionalConstant = anOptionalConstant!  // error: can't use a constant before it is assigned
+anOptionalConstant = "assigned"
+
+
 anOptionalFloat = 7
 var total = anOptionalFloat! + 5           // this works but is potentially unsafe (see above)
 
